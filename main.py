@@ -4,6 +4,7 @@ from pyodide.ffi import create_proxy
 import io
 import pypdf
 import platform
+import logging
 
 # 儲存所有上傳的 PDF 檔案
 files_store = []
@@ -14,6 +15,10 @@ file_list_container = document.getElementById("file-list-container")
 merge_btn = document.getElementById("merge-btn")
 status_div = document.getElementById("status")
 download_link = document.getElementById("download-link")
+
+
+# 設定 pypdf 的日誌層級為 ERROR (只有嚴重錯誤才顯示，警告不顯示)
+logging.getLogger("pypdf").setLevel(logging.ERROR)
 
 def render_file_list():
     """更新檔案列表顯示"""
