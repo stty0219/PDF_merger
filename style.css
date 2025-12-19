@@ -1,0 +1,141 @@
+:root {
+    --primary-color: #4CAF50;
+    --danger-color: #ff4444;
+    --bg-color: #f4f4f9;
+}
+
+body {
+    font-family: "Microsoft JhengHei", "Segoe UI", sans-serif;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    margin: 0;
+}
+.container {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* 自訂檔案上傳樣式 */
+.custom-file-upload {
+    border: 2px dashed #ccc;
+    display: inline-block;
+    padding: 15px 30px;
+    cursor: pointer;
+    border-radius: 8px;
+    color: #555;
+    transition: all 0.3s;
+    width: 80%;
+    box-sizing: border-box; /* 防止 padding 影響寬度 */
+}
+
+
+/* 檔案列表區 */
+#file-list-container {
+    margin-top: 20px;
+    text-align: left;
+    max-height: 400px;
+    overflow-y: auto;
+    border-top: 1px solid #eee;
+}
+
+.file-item {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 12px 10px; /* 增高以利拖拉 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* 已移除動畫以改善拖拉體驗 */
+}
+
+.drag-handle {
+    cursor: grab; /* 可拖拉的游標 */
+    color: #999;
+    padding-right: 15px;
+    font-size: 1.2rem;
+    user-select: none; /* 阻止文字被選取 */
+}
+.drag-handle:active {
+    cursor: grabbing; /* 按下時的抓取游標 */
+}
+
+/* SortableJS 拖拉替身樣式 */
+.sortable-ghost {
+    opacity: 0.4;
+    background-color: #e8f0fe;
+    border: 2px dashed var(--primary-color);
+}
+
+.file-name {
+    font-size: 0.95rem;
+    color: #333;
+    flex-grow: 1;
+    margin-right: 10px;
+    word-break: break-all;
+    user-select: none; /* 名稱不可選取以提升拖拉體驗 */
+}
+
+#file-input {
+    display: none !important;
+}
+
+.btn-group button {
+    margin-left: 5px;
+    padding: 5px 10px;
+    font-size: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+}
+.btn-del { background-color: var(--danger-color); opacity: 0.8; }
+.btn-del:hover { opacity: 1; }
+/* 按鈕與狀態樣式 */
+#merge-btn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+/* 狀態文字區域 */
+#status {
+    margin-top: 20px; /* 與上方按鈕拉開距離 */
+    font-weight: bold;
+    font-size: 1.1rem;
+    min-height: 1.5em; /* 預留高度，避免文字出現時版面跳動 */
+}
+
+/* 下載連結的美化 */
+a#download-link {
+    display: block; /* 讓它獨佔一行 */
+    margin-top: 20px; /* 與上方狀態文字拉開距離 */
+    
+    /* 讓它看起來像一個次要按鈕或資訊卡片 */
+    background-color: #e3f2fd; /* 淡淡的藍色背景 */
+    color: #1976D2; /* 深藍色文字 */
+    padding: 15px;
+    border-radius: 8px;
+    text-decoration: none; /* 去底線 */
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+a#download-link:hover {
+    background-color: #bbdefb; /* 滑鼠移上去變深一點 */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transform: translateY(-2px); /* 微微浮起的效果 */
+}

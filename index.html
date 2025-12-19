@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyScript PDF 合併工具 (拖拉版)</title>
+    <link rel="stylesheet" href="./style.css">
+    
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>📄 PDF 合併神器</h1>
+        <p>by Wei</p>
+
+        <label for="file-input" class="custom-file-upload">
+            📂 點擊選擇或新增 PDF 檔案
+        </label>
+        <input type="file" id="file-input" multiple accept=".pdf">
+
+        <div id="file-list-container"></div>
+
+        <button id="merge-btn">🚀 開始合併</button>
+
+        <div id="status"></div>
+        <a id="download-link" href="#" style="display:none;" download="merged.pdf">📥 下載合併後的檔案</a>
+    </div>
+
+    <script type="py" src="./main.py" config="./pyscript.toml"></script>
+
+    <script>
+        // 等待頁面載入
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const listContainer = document.getElementById('file-list-container');
+
+            // 啟用 SortableJS
+            new Sortable(listContainer, {
+                animation: 150, // 拖拉平滑動畫 (ms)
+                ghostClass: 'sortable-ghost', // 替身 class
+                handle: '.drag-handle', // 僅可從把手拖動
+
+                // 拖拉結束事件
+                onEnd: function (evt) {
+                    // 舊索引與新索引
+
+                    // 呼叫 Python 更新順序
+                    if (window.py_on_reorder) {
+                        window.py_on_reorder(evt.oldIndex, evt.newIndex);
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

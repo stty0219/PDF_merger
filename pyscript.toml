@@ -1,0 +1,3 @@
+name = "PDF Merger"
+description = "Merge PDFs in the browser"
+packages = ["pypdf"]
